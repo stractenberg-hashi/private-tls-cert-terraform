@@ -5,50 +5,50 @@
 
 variable "ca_public_key_file_path" {
   description = "Write the PEM-encoded CA certificate public key to this path (e.g. /etc/tls/ca.crt.pem)."
-  default = "tls/ca.crt.pem" 
+  default     = "tls/ca.crt.pem"
 }
 
 variable "public_key_file_path" {
   description = "Write the PEM-encoded certificate public key to this path (e.g. /etc/tls/vault.crt.pem)."
-  default = "tls/vault.crt.pem" 
+  default     = "tls/vault.crt.pem"
 }
 
 variable "private_key_file_path" {
   description = "Write the PEM-encoded certificate private key to this path (e.g. /etc/tls/vault.key.pem)."
-  default = "tls/vault.key.pem" 
+  default     = "tls/vault.key.pem"
 }
 
 variable "owner" {
   description = "The OS user who should be given ownership over the certificate files."
-  default = "ki.hong"
+  default     = "stevetractenberg"
 }
 
 variable "organization_name" {
   description = "The name of the organization to associate with the certificates (e.g. Acme Co)."
-  default = "bogotobogo"
+  default     = "Blacks4"
 }
 
 variable "ca_common_name" {
   description = "The common name to use in the subject of the CA certificate (e.g. acme.co cert)."
-  default = "bogotobogo cert"
+  default     = "Blacks4 CA Common"
 }
 
 variable "common_name" {
   description = "The common name to use in the subject of the certificate (e.g. acme.co cert)."
-  default = "bogotobogo cert"
+  default     = "printer.blacks4.local"
 }
 
 variable "dns_names" {
   description = "List of DNS names for which the certificate will be valid (e.g. vault.service.consul, foo.example.com)."
-  type        = "list"
+  type        = list(string)
   default = [
-    "bogotobogol.com"
+    "printer.blacks4.local"
   ]
 }
 
 variable "ip_addresses" {
   description = "List of IP addresses for which the certificate will be valid (e.g. 127.0.0.1)."
-  type        = "list"
+  type        = list(string)
   default = [
     "127.0.0.1"
   ]
@@ -56,7 +56,7 @@ variable "ip_addresses" {
 
 variable "validity_period_hours" {
   description = "The number of hours after initial issuing that the certificate will become invalid."
-  default = "755"
+  default     = "755"
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ variable "validity_period_hours" {
 
 variable "ca_allowed_uses" {
   description = "List of keywords from RFC5280 describing a use that is permitted for the CA certificate. For more info and the list of keywords, see https://www.terraform.io/docs/providers/tls/r/self_signed_cert.html#allowed_uses."
-  type        = "list"
+  type        = list(string)
 
   default = [
     "cert_signing",
@@ -77,7 +77,7 @@ variable "ca_allowed_uses" {
 
 variable "allowed_uses" {
   description = "List of keywords from RFC5280 describing a use that is permitted for the issued certificate. For more info and the list of keywords, see https://www.terraform.io/docs/providers/tls/r/self_signed_cert.html#allowed_uses."
-  type        = "list"
+  type        = list(string)
 
   default = [
     "key_encipherment",
